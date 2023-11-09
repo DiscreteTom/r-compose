@@ -1,6 +1,6 @@
 # R-Compose
 
-[![npm](https://img.shields.io/npm/v/r-compose?style=flat-square)](https://www.npmjs.com/package/r-compose)
+[![npm](https://img.shields.io/npm/v/@discretetom/r-compose?style=flat-square)](https://www.npmjs.com/package/@discretetom/r-compose)
 ![coverage](https://img.shields.io/codecov/c/github/DiscreteTom/r-compose?style=flat-square)
 ![build](https://img.shields.io/github/actions/workflow/status/DiscreteTom/r-compose/publish.yml?style=flat-square)
 ![license](https://img.shields.io/github/license/DiscreteTom/r-compose?style=flat-square)
