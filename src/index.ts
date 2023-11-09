@@ -120,12 +120,12 @@ export const composables = Object.freeze({
    * Match one or more times (`+`).
    * If the content is a `RegExp`, its source is used.
    * @example
-   * several("a") === "(?:a)+"
-   * several(/\./) === "(?:\\.)+"
-   * several("a", { greedy: false }) === "(?:a)+?"
+   * some("a") === "(?:a)+"
+   * some(/\./) === "(?:\\.)+"
+   * some("a", { greedy: false }) === "(?:a)+?"
    * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Quantifiers
    */
-  several(content: string | RegExp, options?: QuantifierOptions) {
+  some(content: string | RegExp, options?: QuantifierOptions) {
     return options?.greedy ?? true
       ? `(?:${intoString(content)})+`
       : `(?:${intoString(content)})+?`;
