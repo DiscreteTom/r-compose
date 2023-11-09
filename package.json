@@ -5,7 +5,14 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --build",
-    "test": "jest"
+    "clean": "tsc --build --clean",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "format": "prettier --write --end-of-line auto \"src/**/*.ts\"",
+    "format:check": "prettier --check --end-of-line auto \"src/**/*.ts\"",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/",
+    "prepublishOnly": "yarn format:check && yarn lint && yarn test:coverage && yarn clean && yarn build"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
