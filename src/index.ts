@@ -56,16 +56,17 @@ export const composables = Object.freeze({
    * Match a list of candidates.
    * Empty strings are ignored.
    * If a parameter is a `RegExp`, its source is used.
+   * The result is wrapped in a non-capturing group.
    * @example
-   * select("a", "b") === "a|b"
-   * select("a", '', "b") === "a|b"
-   * select('a', /\./, 'b') === "a|\\.|b"
+   * select("a", "b") === "(?:a|b)"
+   * select("a", '', "b") === "(?:a|b)"
+   * select('a', /\./, 'b') === "(?:a|\\.|b)"
    */
   select(...contents: (string | RegExp)[]) {
-    return contents
+    return `(?:${contents
       .map(intoString)
       .filter((c) => c.length)
-      .join("|");
+      .join("|")})`;
   },
   /**
    * Wrap the content by a non-capturing group.
