@@ -10,7 +10,7 @@ Compose `RegExp` in JavaScript in a readable and maintainable way.
 ## Install
 
 ```bash
-yarn add r-compose
+yarn add @discretetom/r-compose
 ```
 
 ## [Examples](https://github.com/DiscreteTom/r-compose/tree/main/examples)
