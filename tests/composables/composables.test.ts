@@ -11,9 +11,9 @@ test("concat", () => {
 });
 
 test("select", () => {
-  expect(composables.select("a", "b")).toBe("a|b");
-  expect(composables.select("a", "", "b")).toBe("a|b");
-  expect(composables.select("a", /\./, "b")).toBe("a|\\.|b");
+  expect(composables.select("a", "b")).toBe("(?:a|b)");
+  expect(composables.select("a", "", "b")).toBe("(?:a|b)");
+  expect(composables.select("a", /\./, "b")).toBe("(?:a|\\.|b)");
 });
 
 test("group", () => {
