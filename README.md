@@ -105,6 +105,64 @@ compose(({ concat, any, select, lookahead, escape, not }) =>
 
 </details>
 
+[retsac](https://github.com/DiscreteTom/retsac) also use `r-compose` to refactor long and complex regex with confidence.
+
+<details>
+<summary>Click to Expand</summary>
+
+### Before
+
+```ts
+enableSeparator
+  ? new RegExp(
+      `(?:0x[\\da-f]+|0o[0-7]+|\\d+(?:${separator}\\d+)*(?:\\.\\d+(?:${separator}\\d+)*)?(?:[eE][-+]?\\d+(?:${separator}\\d+)*)?)${
+        boundary ? "\\b(?!\\.)" : "" // '.' is not allowed as the boundary
+      }`,
+      "i",
+    )
+  : new RegExp(
+      `(?:0x[\\da-f]+|0o[0-7]+|\\d+(?:\\.\\d+)?(?:[eE][-+]?\\d+)?)${
+        boundary ? "\\b(?!\\.)" : "" // '.' is not allowed as the boundary
+      }`,
+      "i",
+    );
+```
+
+### After
+
+```ts
+compose(
+  ({ concat, select, any, optional, lookahead }) => {
+    const separatorPart = enableSeparator ? any(concat(separator, /\d+/)) : "";
+    return concat(
+      select(
+        /0x[\da-f]+/, // hexadecimal
+        /0o[0-7]+/, // octal
+        // below is decimal with separator
+        concat(
+          /\d+/, // integer part
+          separatorPart, // separator and additional integer part
+          optional(concat(/\.\d+/, separatorPart)), // decimal part
+          optional(concat(/[eE][-+]?\d+/, separatorPart)), // exponent part
+        ),
+      ),
+      boundary
+        ? concat(
+            /\b/,
+            // '.' match /\b/ but is not allowed as the boundary
+            lookahead(/\./, { negative: true }),
+          )
+        : "",
+    );
+  },
+  "i", // case insensitive
+);
+```
+
+> Source: https://github.com/DiscreteTom/retsac/commit/430a2175eb4c6d564ebdacf5b01a91ea42885ef2?diff=split
+
+</details>
+
 ## [More Examples](https://github.com/DiscreteTom/r-compose/tree/main/examples)
 
 ## [CHANGELOG](https://github.com/DiscreteTom/r-compose/blob/main/CHANGELOG.md)
