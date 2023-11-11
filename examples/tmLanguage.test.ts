@@ -9,7 +9,7 @@ const r = compose(
       concat(
         lookbehind("[_$[:alnum:]]", { negative: true }), // ensure not preceded by an alphanumeric character, underscore or a dollar sign
         select(
-          lookbehind(/\.\.\./), /// could be preceded by 3 dots
+          lookbehind(/\.\.\./), // could be preceded by 3 dots
           lookbehind(/\./, { negative: true }), // not preceded by one dot
         ),
         // the `export` keyword is optional, ensure boundary behind, whitespace after
