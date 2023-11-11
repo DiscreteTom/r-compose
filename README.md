@@ -13,6 +13,62 @@ Compose `RegExp` in JavaScript in a readable and maintainable way.
 yarn add @discretetom/r-compose
 ```
 
+## Features
+
+- Treat `RegExp` as its source string, and concat it with literal or escaped strings. Empty strings will be ignored.
+
+```ts
+concat(
+  /\n/, // => "\\n"
+  "123", // => "123"
+  false ? /123/ : "", // => ignored
+  escape("()"), // => "\\(\\)"
+) === "\\n123\\(\\)";
+```
+
+- Auto group content in a non-capturing group if the composable function is context-sensitive.
+
+```ts
+select("a", "b") === "(?:a|b)";
+optional("c") === "(?:c)?";
+lookahead("d") === "(?=d)";
+```
+
+- Additional options for some composable functions.
+
+```ts
+capture("a", { name: "foo" }) === "(?<foo>a)";
+optional("a", { greedy: false }) === "(?:a)??";
+lookahead("a", { negative: true }) === "(?!a)";
+```
+
+- Composable functions return `string` so you can cascade / nest them.
+
+```ts
+lookahead(
+  concat(
+    lookbehind("[_$[:alnum:]]", { negative: true }),
+    select(lookbehind(/\.\.\./), lookbehind(/\./, { negative: true })),
+    optional(concat(capture(/\bexport/), /\s+/)),
+    optional(concat(capture(/\bdeclare/), /\s+/)),
+    concat(/\b/, capture(select("var", "let"))),
+    lookahead("[_$[:alnum:]]", { negative: true }),
+    select(lookahead(/\.\.\./), lookahead(/\./, { negative: true })),
+  ),
+);
+```
+
+## When to Use
+
+- When to use `concat`? Should I always use `concat('a', 'b', 'c')` instead of directly `/abc/`?
+  - Use `concat` when you need to concat strings with `RegExp`, since the escaped sequences in strings and in `RegExp`s are different. E.g. `concat('a', /\*/) === "a\\*"`.
+  - Use `concat` if you have conditional logic, since empty strings will be ignored. E.g. `concat('a', false ? 'b' : '', 'c') === "ac"`.
+- When to use those which will create groups like `select/capture/optional/lookahead`?
+  - They are always recommended to use, since parentheses in TypeScript can be organized by code formatter and is more readable than in `RegExp` source string.
+  - Unless the decorated content is only one character, e.g. transform `(?:ab)?` into `optional('ab')` is recommended since the parentheses can be removed, but `a?` is not since there is no parentheses.
+
+Overall, it's your choice to use r-compose aggressively or conservatively. But you can always optimize the organization of your `RegExp` progressively.
+
 ## Example
 
 [retsac](https://github.com/DiscreteTom/retsac) use `r-compose` to avoid escape hell and make the code more readable and maintainable.
