@@ -1,7 +1,7 @@
 {
   "name": "@discretetom/r-compose",
   "description": "Compose RegExp in JavaScript in a readable and maintainable way.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "license": "MIT",
