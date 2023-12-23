@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.2
+
+- Feat: add dist files.
+
 ## v0.2.1
 
 - Fix: codecov.
