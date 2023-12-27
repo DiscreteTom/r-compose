@@ -13,6 +13,8 @@ Compose `RegExp` in JavaScript in a readable and maintainable way.
 yarn add @discretetom/r-compose
 ```
 
+Or try it online in the [playground](https://dttk.discretetom.com/js-playground?crushed=%28%27dependencieV%27https%253A%252F%252Fcdn.jsdelivr.net%252Fnpm%252F%2540discUtetom%252FX%25400.2.2%252Fdist%252FX.min.js%27%255D%7EcellVMPUparKXJZcEK%29LrCEeAAHor%2520usKN%2520diUctlyAqsZN%2520%29LrCEeStrue%7Eid%210_MCEKRegexJt%2520rLcEe%257BQHcEKthKzbody%2520with%2520thKNQ%257B%28%2520escapeBqcatBselectBgroupBcaptuUBanyBsomeYBlookaheadBlookbehindBnotBraw%2520%29%257D%2520W%28Q*Uturn%2520qcat%257BQ**%252FGn%252FDFGGnFQ**F123FDF123FQ**falsK%253F%2520%252F123%252F%2520%253A%2520FFDignoUdQ**escape%257BF%257B%257DF%257DDFGG%257BGG%257DFQ*%257DQ_QHzflagsYQ%2522g%2522A%257D%253BIT_MOutputJole.log%257Br%257DI683287010%29%255D%7EpanelV1703T%255D%29*%2520%2520%2520%2520A%255Cr%255CnB%252C%2520DBHWEomposF%255C%27G%255C%255CH%252F%252F%2520ISfalse%7Eid%211703J%27%7Ecode%21%27qsKe%2520L%2520%253D%2520M%28%27name%21%27NcEablesQA*S%27%7EUadonly%21T340940582UreVs%21%255BW%253D%253E%2520Xr-cEeYBoptionalZt%2520%28%2520_%29%252CqconzUgex%2520%2501zq_ZYXWVUTSQNMLKJIHGFEDBA*_).
+
 ## Features
 
 - Treat `RegExp` as its source string, and concat it with literal or escaped strings. Empty strings will be ignored.
